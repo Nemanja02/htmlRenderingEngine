@@ -2,12 +2,14 @@
 #include "parser.h"
 #include "attribute.h"
 #include "reader.h"
+#include "render.h"
 
 main() {
     Reader r("index.html");
     Parser p(r.getText());
     Element e = p.parseDocument();
-    std::cout << "new element: " << e.stringifySelf() << std::endl;
+    Renderer render(e);
+    render.init();
     
     return 0;
 }
