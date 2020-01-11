@@ -102,44 +102,4 @@ class Element {
             val = val + "</" + tag + ">";
             return val;
         }
-
-        static std::string stringify(Element e) {
-            std::string tag = e.getTag();
-            std::string text = e.getText();
-            AttrMap attrs = e.getAttributes();
-            std::vector<Element> children = e.getChildren();
-
-            std::string val = "<" + tag + " ";
-            std::string attrsString = "";
-            for (int i = 0; i < attrs.size(); i++)
-                attrsString += attrs[i].getName() + "=" + "\"" + attrs[i].getValue() + "\" ";
-            val += attrsString;
-            val = val.substr(0, val.size()-1) + ">";
-            val = val + text;
-            for (int x = 0; x < children.size(); x++) 
-                val += children[x].stringifySelf();
-            val = val + "</" + tag + ">";
-            return val;
-        }
-
-        // friend ostream& operator << (ostream& os, const Element e) {
-        //     string val = e.stringifySelf();
-        //     os << val;
-        // }
 };
-
-// int main() {
-//     Element html("html");
-//     Element head("head");
-//     Element title("title", "Zelim da umrem");
-//     Element body("body");
-//     Element h2("h2", "Zelim da umrem");
-//     h2.addAttr("class", "header");
-//     h2.addAttr("id", "kurac");
-//     body.addChild(h2);
-//     html.addChild(body);
-//     head.addChild(title);
-//     html.addChild(head);
-//     std::cout << html.stringifySelf() << std::endl;
-//     return 0;
-// }
